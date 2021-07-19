@@ -7,20 +7,10 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
 import "stylesheets/application" // Add this line
-
-
-                  const btn = document.querySelector("button.mobile-menu-button");
-                  const menu = document.querySelector(".mobile-menu");
-                  
-                  // add event listeners
-                  btn.addEventListener("click", () => {
-                    menu.classList.toggle("hidden");
-                  });
-
 
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
