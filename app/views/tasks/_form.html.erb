@@ -1,0 +1,36 @@
+<%= form_with(model: [ @journal, @task ] ) do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <ul>
+        <% @task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :Task_name, class: "block mb-1 font-bold text-gray-500" %>
+    <%= form.text_field :taskname, autofocus: true,class: "w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" %>
+  </div>
+  <div class="field">
+    <%= form.label :Task_description, class: "block mb-1 font-bold text-gray-500"  %>
+    <%= form.text_area :taskdescription, autofocus: true, class: "w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" %>
+  </div>
+  <div class="field">
+    <%= form.label :Task_deadline, class: "block mb-1 font-bold text-gray-500"  %>
+    <%= form.date_field :taskdeadline, autofocus: true, class: "w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" %>
+  </div>
+  <div class="field">
+    <%= form.text_field :taskstatus, autofocus: true, value: 'false', id: :task_taskstatus, type: :hidden %>
+  </div>
+  <div class="field">
+    <%= form.text_field :journal_id, autofocus: true, value: @journal.id, id: :task_journal_id, type: :hidden %>
+  </div>
+  <div class="field">
+    <%= form.text_field :user_id, autofocus: true, value: current_user.id, id: :task_user_id, type: :hidden %>
+  </div>
+  <div class="actions"><br>
+    <%= form.submit "Create Task", class: "block w-full bg-yellow-400 hover:bg-yellow-300 p-4 rounded text-yellow-900 hover:text-yellow-800 transition duration-300" %>
+  </div>
+<% end %>

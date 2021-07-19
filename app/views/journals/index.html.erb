@@ -1,0 +1,42 @@
+<section class="container mb-20 mx-auto">
+  <div class="container border-b p-1 m-1">
+    <strong class="text-3xl">Journals</strong>
+  </div>
+  <div class="grid grid-cols-4 gap-4">
+    <% @journals.each do |journal| %>
+      
+        <div>
+          <article class="p-2 m-2 rounded-md shadow-md">
+            <div class="container p-1 m-1 border-b">
+              <h2 class="text-xl"><%= journal.journal_name %></h2>
+            </div>
+            <div class="container text-md p-1 m-1">
+              <span class="fas fa-tasks"></span>
+              <% if journal.tasks.size == 0 %>
+                No Pending tasks
+              <% else %>
+                <%= journal.tasks.size %> Tasks
+              <% end %>
+            </div>
+            <div class="container h-24 p-1 m-1">
+              <%= journal.journal_description %>
+            </div>
+            <div class="container border-t text-lg p-1 m-1">
+              <%= link_to '', journal, class: "fas fa-book-open px-3" %>
+              <a href="<%= edit_journal_path(journal) %>" class="px-3">
+                <i class="fas fa-edit"></i>
+              </a>
+              <%= link_to '', journal, method: :delete, data: { confirm: 'Are you sure?' }, class: "fas fa-trash-alt px-3" %>
+            </div>
+          </article>
+        </div>
+    <% end %>
+  </div>
+</section>
+<%# Urgent Task/s %>
+<section class="container mb-20 mx-auto">
+      <div class="container border-b p-1 m-1">
+        <strong class="text-3xl">Urgent Task/s</strong>
+      </div>
+      <%= render 'journals/urgent' %>
+</section>

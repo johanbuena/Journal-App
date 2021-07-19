@@ -1,0 +1,33 @@
+<section class="container w-2/6 mb-20 mx-auto">
+  <div class="container border-b p-1 m-1">
+    <strong class="text-3xl"><a href="<%= journal_path(@journal) %>"><%= @journal.journal_name %> > </a><a href="<%= journal_task_path(@journal, @task) %>"><%= @task.taskname %></a></strong>
+  </div>
+  <div class="container mx-auto bg-white p-10 rounded shadow-2xl">
+    <div class="field mb-5">
+      <span>Task Details: </span>
+      <span class="block mb-1 font-bold text-gray-500"><%= @task.taskdescription %></span>
+    </div>
+    <div class="field mb-5">
+      <span>Deadline: </span>
+      <span class="block mb-1 font-bold text-gray-500"><%= @task.taskdeadline.to_s(:long) %></span>
+    </div>
+    <div class="field mb-5">
+      <span>Status: </span>
+      <% if @task.taskstatus == false %>
+        <% if @task.taskdeadline == Date.today %>
+          <span class="rounded-full ring-4 ring-yellow-400 w-2 py-0.5 px-1">Urgent</span>
+        <% elsif @task.taskdeadline < Date.today %>
+          <span class="rounded-full ring-4 ring-red-400 w-2 py-0.5 px-1">Overdue</span>
+        <% end %>
+      <% else %>
+        <span class="rounded-full ring-4 ring-green-400 w-2 py-0.5 px-1">Completed</span>
+      <% end %>
+    </div>
+    <div class="container border-t text-lg p-1 m-1">
+      <a href="<%= edit_journal_task_path(@journal, @task) %>" class="px-3">
+        <i class="fas fa-edit"></i>
+      </a>
+      <%= link_to '', journal_task_path(@journal, @task), method: :delete, data: { confirm: 'Are you sure?' }, class: "fas fa-trash-alt px-3" %>
+    </div>
+  </div>
+</section>

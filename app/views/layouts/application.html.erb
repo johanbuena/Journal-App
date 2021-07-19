@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Journal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/f125901932.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="text-gray-600 font-mono">
+    <!-- navbar goes here -->
+    <nav class="mb-10 mt-5 text-xl">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between">
+          <div class="flex">
+            <!-- logo -->
+            <div>
+              <a href="<%= root_path %>" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                <i class="fas fa-book h-4 w-4 mr-1 text-black-400"></i>
+                <span class="font-bold">Journal</span>
+              </a>
+            </div>
+          </div>
+          <% if user_signed_in? %>
+            <!-- user nav -->
+            <div class="hidden md:flex items-center space-x-1">
+              <%= link_to 'Dashboard', journals_path, class: "py-2 px-3" %>
+              <a href="<%= new_journal_path %>">
+                <i class="fas fa-plus text-sm py-2 px-3"></i>Journal
+              </a>
+              <div class="relative inline-block" id="dropdown">
+                <button class="py-2 px-3"><i class="fas fa-user"></i> <%= current_user.firstname %></button>
+                <div class="hidden absolute w-44 rounded-md shadow-2xl" id="dropdown-content">
+                  <%= link_to "Edit Acount", edit_user_registration_path, class: "block py-2 px-3" %>
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "block py-2 px-3" %>
+                </div>
+              <% else %>
+                <!-- secondary nav -->
+                <div class="hidden md:flex items-center space-x-1">
+                  <a href=<%= new_user_session_path %> class="py-2 px-3">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span class="">Login</span>
+                  </a>
+                  <a href=<%= new_user_registration_path %> class="py-2 px-3">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="">Signup</span>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </nav>
+        <main class="md:container md:mx-auto flex flex-col max-w-6xl px-4" id="mainContainer">
+          <%= yield %>
+        </main>
+        <footer class="md:container md:mx-auto text-center p-10 m-10">2021 Journal App</footer>
+      </body>
+    </html>

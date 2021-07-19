@@ -1,0 +1,17 @@
+<!-- login form -->
+<div class="bg-white p-16 rounded shadow-2xl w-2/4 mx-auto">
+  <h2 class="text-3xl font-bold mb-10 text-gray-800">Login</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-5") do |f| %>
+    <div class="field">
+      <%= f.label :email, class: "block mb-1 font-bold text-gray-500" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" %>
+    </div>
+    <div class="field">
+      <%= f.label :password, class: "block mb-1 font-bold text-gray-500" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" %>
+    </div><br />
+    <div class="actions">
+      <%= f.submit "Login", class: "block w-full bg-yellow-400 hover:bg-yellow-300 p-4 rounded text-yellow-900 hover:text-yellow-800 transition duration-300" %>
+    </div>
+  <% end %>
+</div>

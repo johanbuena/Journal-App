@@ -1,0 +1,38 @@
+<div class="grid grid-cols-4 gap-4">
+    <% @tasks.each do |task| %>
+      <% if current_user.id == task.user_id %>
+          <% if task.taskdeadline <= Date.today && task.taskstatus == false %>
+        <div>
+          <article class="p-2 m-2 rounded-md shadow-md">
+            <div class="container p-1 m-1 border-b">
+              <h2 class="text-xl"><%= task.taskname %></h2>
+            </div>
+            <div class="container p-1 m-1">
+              <i class="fas fa-clock"></i><span class="place-self-end"> <%= task.taskdeadline.to_s(:long) %></span>
+              <% if task.taskstatus == false %>
+                <% if task.taskdeadline == Date.today %>
+                  <span class="rounded-full ring-4 ring-yellow-400 w-2 py-0.5 px-1">Urgent</span>
+                <% elsif task.taskdeadline < Date.today %>
+                <span class="rounded-full ring-4 ring-red-400 w-2 py-0.5 px-1">Overdue</span>
+                <% end %>
+              <% else %>
+                <span class="rounded-full ring-4 ring-green-400 w-2 py-0.5 px-1">Completed</span>
+              <% end %>
+            </div>
+            <div class="container h-24 p-1 m-1">
+              <%= task.taskdescription %>
+            </div>
+            <div class="container border-t text-lg p-1 m-1">
+              <%= link_to '', journal_task_path(task.journal_id, task.id), class: "fas fa-book-open px-2" %>
+              <a href="<%= edit_journal_task_path(task.journal_id, task.id) %>" class="px-2">
+                <i class="fas fa-edit"></i>
+              </a>
+              <%= link_to '', journal_task_path(task.journal_id, task.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "fas fa-trash-alt px-2" %>
+              <%# <%= check_box :taskstatus, {} ,method: :put, data: {url: journal_task_path(task.journal_id, task.id)}  %>
+            </div>
+          </article>
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
