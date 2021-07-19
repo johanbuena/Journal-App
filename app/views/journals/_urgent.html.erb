@@ -1,4 +1,4 @@
-<div class="grid grid-cols-4 gap-4">
+<div class="lg:grid lg:grid-cols-4 lg:gap-4">
     <% @tasks.each do |task| %>
       <% if current_user.id == task.user_id %>
           <% if task.taskdeadline <= Date.today && task.taskstatus == false %>
