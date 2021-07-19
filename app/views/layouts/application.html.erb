@@ -24,9 +24,17 @@
               </a>
             </div>
           </div>
-          <% if user_signed_in? %>
+          <!-- mobile button goes here -->
+              <div class="md:hidden flex items-center">
+                <button class="mobile-menu-button">
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            <% if user_signed_in? %>
             <!-- user nav -->
-            <div class="hidden md:flex items-center space-x-1">
+            <div class="hidden md:flex items-center space-x-10">
               <%= link_to 'Dashboard', journals_path, class: "py-2 px-3" %>
               <a href="<%= new_journal_path %>">
                 <i class="fas fa-plus text-sm py-2 px-3"></i>Journal
@@ -52,10 +60,47 @@
               <% end %>
             </div>
           </div>
+          <% if user_signed_in? %>
+            <!-- user nav -->
+            <div class="mobile-menu hidden md:hidden">
+              <a href = <%= journals_path %> class="block py-2 px-4 text-sm hover:bg-gray-200">
+                <span>Dashboard</span>
+              </a>
+              <a href = <%= new_journal_path %> class="block py-2 px-4 text-sm hover:bg-gray-200">
+                <span> + Journal</span>
+              </a>
+              <a href = <%= edit_user_registration_path %> class="block py-2 px-4 text-sm hover:bg-gray-200">
+                <span>My Account</span>
+              </a>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "block py-2 px-4 text-sm hover:bg-gray-200" %>
+            </div>
+          <% else %>
+            <!-- mobile menu -->
+            <div class="mobile-menu hidden md:hidden">
+              <a href=<%= new_user_session_path %> class="block py-2 px-4 text-sm hover:bg-gray-200">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+              </a>
+              <a href=<%= new_user_registration_path %> class="block py-2 px-4 text-sm hover:bg-gray-200">
+                <i class="fas fa-user-plus"></i>
+                <span>Signup</span>
+              </a>
+            </div>
+          <% end %>
         </nav>
         <main class="md:container md:mx-auto flex flex-col max-w-6xl px-4" id="mainContainer">
           <%= yield %>
         </main>
         <footer class="md:container md:mx-auto text-center p-10 m-10">2021 Journal App</footer>
+        <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
+        <%# <script type ="text/javascript">
+          const btn = document.querySelector("button.mobile-menu-button");
+          const menu = document.querySelector(".mobile-menu");
+          
+          // add event listeners
+          btn.addEventListener("click", () => {
+              menu.classList.toggle("hidden");
+          });
+        </script> %>
       </body>
     </html>
