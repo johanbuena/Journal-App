@@ -19,7 +19,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "User name:\n  can create"
   end
 
   test "user can login" do
@@ -29,16 +28,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "User name:\n  can login"
-  end
-
-  test "user can logout" do
-    sign_in users(:user)
-    delete destroy_user_session_path
-    assert_response :redirect
-    follow_redirect!
-    assert_response :success
-    assert_select "title", 1, "User name:\n  can login"
   end
   
 end
