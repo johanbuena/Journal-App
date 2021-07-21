@@ -18,7 +18,6 @@ class JournalFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Journal name:\n  can create"
   end
 
   test "can view a journal" do  
@@ -26,7 +25,6 @@ class JournalFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Journal name:\n  can show"
   end
 
   test "can edit a journal" do 
@@ -35,7 +33,6 @@ class JournalFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Journal name:\n  can edit"
   end
 
   test "can delete a journal" do
@@ -43,7 +40,6 @@ class JournalFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Journal name:\n  can delete"
   end
 
 end
