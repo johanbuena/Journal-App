@@ -4,7 +4,7 @@ class Journal < ApplicationRecord
 
     validates :journal_name,
                 presence: true,
-                length: {maximum: 20}
+                length: {maximum: 30}
                 
     validates :journal_description, 
                 presence: true,
