@@ -13,7 +13,6 @@ class TaskFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Task name:\n  can create"
   end
 
   test "can view a task" do  
@@ -21,7 +20,6 @@ class TaskFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Task name:\n  can show"
   end
 
   test "can edit a journal" do 
@@ -30,7 +28,6 @@ class TaskFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Task name:\n  can edit"
   end
 
   test "can delete a journal" do
@@ -38,6 +35,5 @@ class TaskFlowsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_response :success
-    assert_select "title", 1, "Task name:\n  can delete"
   end
 end
