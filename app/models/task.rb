@@ -5,7 +5,7 @@ class Task < ApplicationRecord
 
     validates :taskname, 
                 presence: true,
-                length: {maximum: 20}
+                length: {maximum: 30}
 
     validates :taskdescription, 
                 presence: true,
