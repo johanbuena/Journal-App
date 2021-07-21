@@ -3,7 +3,7 @@ require "test_helper"
 class JournalTest < ActiveSupport::TestCase
   setup do
     @journal = Journal.create(journal_name: "Journal One",
-                              journal_description: ('x'*20),
+                              journal_description: ('x'*30),
                               user_id: users(:user).id)
   end
 
@@ -13,7 +13,7 @@ class JournalTest < ActiveSupport::TestCase
   end
 
   test "should reject a journal with a name that is longer than 20 chars" do
-    @journal.journal_name = 'x' * 21
+    @journal.journal_name = 'x' * 31
     assert_not @journal.valid?
   end
 
